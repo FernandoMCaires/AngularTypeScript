@@ -3,5 +3,8 @@
     <h1>{{nomeDaEmpresa}}</h1>
       <p>Conheça nossos especialistas</p>
   </header>
- <app-consultor [Consultor]="consultorJoao" />
+<app-consultor
+  *ngFor = "let consultor of consultores"
+  [Consultor]="consultor"
+/>
 </div>

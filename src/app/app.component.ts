@@ -1,19 +1,22 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { ConsultorModel } from './models/consultor.interface';
 import { ConsultorComponent } from "./consultor/consultor.component";
+import { CommonModule } from '@angular/common';
+import { ConsultorService } from './services/consultor.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  imports: [ConsultorComponent]
+  imports: [ConsultorComponent, CommonModule]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   nomeDaEmpresa: string = 'TechConsult Solutions';
-  consultorJoao: ConsultorModel = {
-    nome: "Joao Silva",
-    especialidade: "Desenvolvedor FullStack",
-    email: 'joao@email.com'
+  consultores: ConsultorModel[] = [];
+
+  constructor(private consultorService: ConsultorService) {}
+
+  ngOnInit(): void {
+    this.consultores = this.consultorService.getConsultores();
   }
 }
