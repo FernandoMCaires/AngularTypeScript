@@ -3,8 +3,17 @@
     <h1>{{nomeDaEmpresa}}</h1>
       <p>Conheça nossos especialistas</p>
   </header>
-<app-consultor
-  *ngFor = "let consultor of consultores"
-  [Consultor]="consultor"
-/>
+
+  <!-- novo: campo de busca -->
+  <input
+    type="text"
+    placeholder="Buscar por nome, especialidade ou email..."
+    (input)="onSearch($event)"
+    style="width:100%; padding:8px; margin:12px 0; box-sizing:border-box;"
+  />
+
+  <app-consultor
+    *ngFor="let consultor of filteredConsultores"
+    [Consultor]="consultor"
+  ></app-consultor>
 </div>
