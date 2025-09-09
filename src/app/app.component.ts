@@ -14,7 +14,6 @@ export class AppComponent implements OnInit {
   nomeDaEmpresa: string = 'TechConsult Solutions';
   consultores: ConsultorModel[] = [];
 
-  // novo: termo de busca
   searchTerm: string = '';
 
   constructor(private consultorService: ConsultorService) {}
@@ -23,12 +22,10 @@ export class AppComponent implements OnInit {
     this.consultores = this.consultorService.getConsultores();
   }
 
-  // novo: atualiza searchTerm a partir do input
   onSearch(event: Event) {
     this.searchTerm = (event.target as HTMLInputElement).value;
   }
 
-  // novo: getter que retorna os consultores filtrados
   get filteredConsultores(): ConsultorModel[] {
     if (!this.searchTerm) return this.consultores;
     const s = this.searchTerm.toLowerCase();
